@@ -19,11 +19,11 @@ import com.aliyunidaas.sync.event.context.EventContext;
 import com.aliyunidaas.sync.event.objects.RequestObject;
 import com.aliyunidaas.sync.event.objects.ResponseObject;
 import com.aliyunidaas.sync.event.runner.EventDataRunner;
-import com.aliyunidaas.sync.util.ExceptionUtil;
-import com.aliyunidaas.sync.util.JsonUtil;
-import com.aliyunidaas.sync.util.StringUtil;
+import com.aliyunidaas.sync.util.*;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
+
+import java.util.List;
 
 /**
  * 详细说明请参看 README.md
@@ -35,6 +35,17 @@ public class RamFc extends FcBaseRequestHandler {
     private static final String JWK_JSON_VALUE = System.getenv(EnvConstants.JWK_JSON);
     private static final String APP_ID_VALUE = System.getenv(EnvConstants.APP_ID);
     private static final String KEY_VALUE = System.getenv(EnvConstants.KEY);
+    private static final String ALLOWED_IPS_VALUE = System.getenv(EnvConstants.ALLOWED_IPS);
+
+    @Override
+    protected IpMatcher getIpMatcher(FunctionComputeLogger logger) {
+        final List<String> allowedIps = StringUtil.splitToList(ALLOWED_IPS_VALUE);
+        if (allowedIps == null) {
+            return null;
+        }
+        logger.debug("Allowed IP list: " + allowedIps);
+        return new IpGroupMatcherImpl(allowedIps);
+    }
 
     @Override
     protected ResponseObject innerHandleRequest(Context context, RequestObject requestObject) throws Exception {

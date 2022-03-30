@@ -1,5 +1,9 @@
 package com.aliyunidaas.sync.util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 字符串工具类
  *
@@ -39,7 +43,44 @@ public class StringUtil {
         return str1.equals(str2);
     }
 
+    public static boolean isEmpty(String str) {
+        return (str == null) || str.isEmpty();
+    }
+
     public static boolean isNotEmpty(String str) {
         return (str != null) && (!str.isEmpty());
+    }
+
+    public static String trim(String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.trim();
+    }
+
+    public static List<String> splitToList(String cidr) {
+        if (isEmpty(cidr)) {
+            return null;
+        }
+        final List<String> list = Arrays.stream(cidr.split("[,;]")).map(StringUtil::trim).collect(Collectors.toList());
+        return list.isEmpty() ? null : list;
+    }
+
+    /**
+     * Below code is from org.springframework:spring-core:5.2.12
+     * Reference: org.springframework.util.StringUtils#split
+     */
+    public static String[] split(String toSplit, String delimiter) {
+        if (isEmpty(toSplit) || isEmpty(delimiter)) {
+            return null;
+        }
+        final int offset = toSplit.indexOf(delimiter);
+        if (offset < 0) {
+            return null;
+        }
+
+        final String beforeDelimiter = toSplit.substring(0, offset);
+        final String afterDelimiter = toSplit.substring(offset + delimiter.length());
+        return new String[] {beforeDelimiter, afterDelimiter};
     }
 }

@@ -31,4 +31,8 @@ public class EnvConstants {
      * 对称加密密钥
      */
     public static final String KEY = "paramKey";
+    /**
+     * 允许的IP地址
+     */
+    public static final String ALLOWED_IPS = "paramAllowedIps";
 }
