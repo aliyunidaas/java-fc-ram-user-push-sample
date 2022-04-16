@@ -9,6 +9,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.aliyunidaas</groupId>
+            <artifactId>idaas-sync</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyunidaas</groupId>
+            <artifactId>idaas-sync-fc</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.aliyun.fc.runtime</groupId>
             <artifactId>fc-java-core</artifactId>
             <version>1.4.0</version>
