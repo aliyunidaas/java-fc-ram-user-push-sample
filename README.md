@@ -27,19 +27,20 @@ $ mvn package
 
 ```shell
 $ ll target/
-.rw-r--r-- 3.6M * 22 Feb 19:10 java-fc-ram-sample-1.0-SNAPSHOT.jar
+.rw-r--r-- 3.6M * 27 Nov 04:02 java-fc-ram-sample-1.1-SNAPSHOT.jar
 ```
 
 参数配置清单：
 
-| 参数 | 说明                       |
-| ---- |--------------------------|
-| paramAccessKeyId | 有RAM访问权限的AccessKeyID     |
-| paramAccessKeySecret | 有RAM访问权限的AccessKeySecret |
-| paramAppId | 应用ID                     |
-| paramJwkUrl | 应用账户同步的"验签公钥端点"          |
-| paramJwkJson | "验签公钥端点"对应的JWK JSON      |
-| paramKey | 应用账户同步的"加解密钥"            |
+| 参数 | 说明                                                        |
+| ---- |-----------------------------------------------------------|
+| paramAccessKeyId | 有RAM访问权限的AccessKeyID                                      |
+| paramAccessKeySecret | 有RAM访问权限的AccessKeySecret                                  |
+| paramAppId | 应用ID                                                      |
+| paramJwkUrl | 应用账户同步的"验签公钥端点"                                           |
+| paramJwkJson | "验签公钥端点"对应的JWK JSON                                       |
+| paramKey | 应用账户同步的"加解密钥"                                             |
+| paramAllowedIps | 访问函数的IP地址白名单，支持CIDR表示方法，如 112.124.239.96/27，多个CIDR时逗号隔开即可 |
 
 > paramJwkUrl 和 paramJwkJson 只需要配置其中一项，建议配置 paramJwkJson 减少运行时访问网络依赖
 

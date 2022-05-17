@@ -61,6 +61,8 @@ public class RamFc extends FcBaseRequestHandler {
 
         final DefaultEventDataCallbackImpl defaultEventDataCallback = new DefaultEventDataCallbackImpl();
         eventDataRunner.setEventDataCallback(defaultEventDataCallback);
+        // 注册默认测试事件
+        defaultEventDataCallback.registerDefaultTestCallback();
         // 注册用户推送回调
         defaultEventDataCallback.registerUserPushCallback(new UserPushCallback() {
             @Override
